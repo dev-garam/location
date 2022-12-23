@@ -2,19 +2,6 @@ import fs from "fs";
 import path from "path";
 import { randomNumber } from "./utils/random";
 
-/**
- *
- * 1. m x n 격자 생성(2~10000 정수)
- * 2. generateIsland function n 개의 점 삽입
- *    갯수만 주어짐 아마도 랜덤좌표, 중복 불가능, 생성된 좌표 갯수 리턴
- *
- * 3. 여러번 호출 가능, 다만 중복되지 않아야 함
- *
- * 4. removeIsland(n) 좌표에서 제거, 단 남은 좌표중 제거 가능, 제거된 좌표 리턴
- *
- * 5. 각 read, write 해줄 것
- */
-
 const filename = "data.json";
 const filepath = path.join(__dirname, "../data", filename);
 
