@@ -57,6 +57,4 @@ export function read() {
 
 const [key, min = 2, max = 10000] = process.argv.slice(2)
 
-console.log(process.argv.slice(2))
-
 key === "init" && init(+min, +max);
