@@ -1,0 +1,23 @@
+{
+  "name": "003_location",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "initGrid": "ts-node src/init.ts init",
+    "generateIsland": "ts-node src/location/generateIsland.ts",
+    "removeIsland": "ts-node src/location/removeIsland.ts",
+    "read": "ts-node src/location/read.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17"
+  }
+}
