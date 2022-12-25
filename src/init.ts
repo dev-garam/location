@@ -3,7 +3,8 @@ import path from "path";
 import { randomNumber } from "./utils/random";
 
 const filename = "data.json";
-const filepath = path.join(__dirname, "../data", filename);
+const dirpath = path.join(__dirname, "../data")
+const filepath = path.join(dirpath, filename);
 
 interface initData {
   min: number;
@@ -44,8 +45,8 @@ export async function init({ min, max }: initData) {
 
 export async function write(data: object) {
   // 파일 저장, json 형식
+  if (!fs.existsSync(dirpath)) fs.mkdirSync(dirpath);
   if (!fs.existsSync(filepath)) {
-    // file 없을 경우 생성해주기
     fs.open(filepath, "w", (err) => {
       console.error("error1: ", err);
     });
