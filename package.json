@@ -6,9 +6,9 @@
   "scripts": {
     "test": "jest",
     "initGrid": "ts-node src/init.ts init",
-    "generateIsland": "ts-node src/location/generateIsland.ts",
-    "removeIsland": "ts-node src/location/removeIsland.ts",
-    "read": "ts-node src/location/read.ts"
+    "generateIsland": "ts-node src/routers/generateIsland.ts",
+    "removeIsland": "ts-node src/routers/removeIsland.ts",
+    "read": "ts-node src/routers/getData.ts"
   },
   "author": "",
   "license": "ISC",

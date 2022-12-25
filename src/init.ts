@@ -5,12 +5,17 @@ import { randomNumber } from "./utils/random";
 const filename = "data.json";
 const filepath = path.join(__dirname, "../data", filename);
 
+interface initData {
+  min: number;
+  max: number;
+}
+
+
 /**
- *
- * @param min 좌표 최소값
- * @param max 좌표 최대값
+ * @param initData = {min: 최소값, max: 최대값} 
+ * @returns 
  */
-function init(min: number = 2, max: number = 10000) {
+export async function init({ min, max }: initData) {
   let m = randomNumber(min, max);
   let n = randomNumber(min, max);
 
@@ -32,12 +37,12 @@ function init(min: number = 2, max: number = 10000) {
   //   nMin++;
   // }
 
-  write({ grid: { m, n, max, min } });
-
-  console.log("grid init!: ", { grid: { m, n, max, min } })
+  await write({ grid: { m, n, max, min } });
+  console.log("grid init!: ", { grid: { m, n, max, min } });
+  return { grid: { m, n, max, min } };
 }
 
-export function write(data: object) {
+export async function write(data: object) {
   // 파일 저장, json 형식
   if (!fs.existsSync(filepath)) {
     // file 없을 경우 생성해주기
@@ -45,16 +50,18 @@ export function write(data: object) {
       console.error("error1: ", err);
     });
   }
-  fs.writeFile(filepath, JSON.stringify(data), (err) => {
-    if (err) console.error("error2: ", err);
-  });
+  fs.writeFileSync(filepath, JSON.stringify(data));
 }
 
 export function read() {
   const data = fs.readFileSync(filepath, "utf-8");
-  return JSON.parse(data);
+  if (typeof data === "string" && data.length > 0) return JSON.parse(data);
 }
 
-const [key, min = 2, max = 10000] = process.argv.slice(2)
+const [key, min = 2, max = 10000] = process.argv.slice(2);
 
-key === "init" && init(+min, +max);
+key === "init" &&
+  init({
+    min: Number.isNaN(+min) ? 2 : +min,
+    max: Number.isNaN(+max) ? 10000 : +max,
+  });
