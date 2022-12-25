@@ -6,7 +6,7 @@ import { randomNumber } from "../utils/random";
  * @param n 삭제할 갯수
  * @returns 실제 삭제된 갯수
  */
-function removeIsland(n: number) {
+export async function removeIsland(n: number) {
   const { grid, selectPoint = [] } = read();
   let data = {grid}
   let deleteCnt = 0;
@@ -16,13 +16,11 @@ function removeIsland(n: number) {
       selectPoint.splice(deleteIdx, 1);
       deleteCnt++;
     }
-    write({ ...data, selectPoint });
+    await write({ ...data, selectPoint });
   } else {
-    write(data);
-    deleteCnt = n;
+    await write(data);
+    deleteCnt = selectPoint.length;
   }
   return deleteCnt;
 }
 
-const n = +process.argv[2].replace(/(\s*)/g, "");
-console.log("삭제된 갯수: ", removeIsland(Number.isNaN(n) ? 5 : n));

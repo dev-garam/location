@@ -6,7 +6,7 @@ import { randomNumber } from "../utils/random";
  * @param num 선택할 갯수
  * @returns 실제 선택된 갯수
  */
-function generateIsland(num: number) {
+export async function generateIsland(num: number) {
   const { grid, selectPoint = [] } = read();
   const { m, n, min } = grid;
   const newPointList: number[][] = [];
@@ -19,7 +19,7 @@ function generateIsland(num: number) {
   }
 
   const data = { grid, selectPoint: [...selectPoint, ...newPointList] };
-  write(data);
+  await write(data);
   return saveCnt;
 }
 
@@ -44,5 +44,3 @@ function findPoint(
     : findPoint(selectPoint, min, maxM, maxN);
 }
 
-const n = +process.argv[2].replace(/(\s*)/g, "");
-console.log("생성된 갯수: ", generateIsland(Number.isNaN(n) ? 5 : n));
